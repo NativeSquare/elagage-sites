@@ -110,12 +110,19 @@ export function Estimator({
           <MailCheck className="size-6" />
         </div>
         <p className="mt-4 font-heading text-lg font-bold text-emerald-900">
-          Votre estimation est en route&nbsp;!
+          Votre estimation a été envoyée à l&apos;adresse email indiquée
         </p>
         <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">
-          On vient de l&apos;envoyer à <strong className="text-foreground">{sentTo}</strong>.
-          Vérifiez votre boîte de réception (et vos spams). Pour aller plus vite vers
-          un devis précis, appelez-nous directement&nbsp;:
+          Vérifiez votre boîte de réception (et vos spams).
+        </p>
+        <p className="mx-auto mt-4 max-w-md rounded-lg border border-amber-200 bg-amber-50 p-3 text-xs leading-relaxed text-amber-900">
+          ⚠️ Ceci est une <strong>simple estimation</strong>, basée sur des fourchettes
+          moyennes. <strong>Le devis définitif — gratuit et sans engagement — est établi
+          après un échange téléphonique ou une visite</strong>, car le prix réel dépend de
+          l&apos;état des arbres, de l&apos;accès et des contraintes du chantier.
+        </p>
+        <p className="mx-auto mt-4 max-w-md text-sm text-muted-foreground">
+          Pour aller plus vite vers un devis précis, appelez-nous&nbsp;:
         </p>
         <a
           href={phoneHref}
