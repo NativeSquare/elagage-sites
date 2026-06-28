@@ -153,7 +153,7 @@ export default async function ServicePage({ params }: Params) {
       {/* ESTIMATEUR — lead magnet, glissé AU MILIEU du contenu */}
       <EstimatorSection
         title={`Estimez le prix de votre ${svc.name.toLowerCase()} ${city.inCity}`}
-        subtitle={`Une fourchette de prix indicative pour votre ${svc.name.toLowerCase()} en 30 secondes. On vous confirme ensuite le devis exact — gratuit et sans engagement.`}
+        subtitle={`Recevez par email une fourchette de prix pour votre ${svc.name.toLowerCase()}. On vous confirme ensuite le devis exact — gratuit et sans engagement.`}
       />
 
       {/* Sections de contenu — 2de moitié */}

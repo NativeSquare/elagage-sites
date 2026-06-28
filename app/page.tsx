@@ -129,7 +129,7 @@ export default function Home() {
 
       {/* ESTIMATEUR — lead magnet */}
       <EstimatorSection
-        subtitle={`Élagage, abattage, taille de haie… Obtenez une fourchette de prix tout de suite pour vos arbres ${city.inCity}. On vous confirme ensuite le devis exact — gratuit et sans engagement.`}
+        subtitle={`Élagage, abattage, taille de haie… Recevez par email une fourchette de prix pour vos arbres ${city.inCity}. On vous confirme ensuite le devis exact — gratuit et sans engagement.`}
       />
 
       {/* CONTEXTE LOCAL — contenu unique */}

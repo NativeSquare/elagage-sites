@@ -36,7 +36,7 @@ export function EstimatorSection({
           </h2>
           <p className="mt-3 text-[15px] leading-relaxed text-emerald-50/85">
             {subtitle ??
-              "Une fourchette de prix indicative tout de suite. On vous confirme ensuite le devis exact — gratuit et sans engagement."}
+              "Recevez votre fourchette de prix par email en 30 secondes. On vous confirme ensuite le devis exact — gratuit et sans engagement."}
           </p>
         </div>
         <div className="mx-auto mt-8 max-w-2xl">

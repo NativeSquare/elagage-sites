@@ -1,14 +1,15 @@
 "use client"
 
 import { useState, type FormEvent } from "react"
-import { Phone } from "lucide-react"
+import { Phone, MailCheck } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 
-// Estimateur de prix — lead magnet. Donne une FOURCHETTE indicative et capture
-// le lead (via /api/lead → Resend). Le devis définitif vient de l'appel/visite.
-// Les fourchettes sont des moyennes nationales (le disclaimer le dit clairement).
+// Estimateur de prix — lead magnet. L'estimation n'est PAS affichée à l'écran :
+// elle est envoyée UNIQUEMENT par email (c'est ce qui pousse le prospect à
+// laisser son vrai email). À la soumission, /api/lead envoie 2 mails : un au
+// prospect (son estimation) + un à l'entreprise (notif de lead).
 const INTERVENTIONS: Record<string, { label: string; base: [number, number] }> = {
   elagage: { label: "Élagage / taille d'arbre", base: [150, 450] },
   abattage: { label: "Abattage", base: [300, 1100] },
@@ -46,7 +47,7 @@ export function Estimator({
   brand: string
 }) {
   const [submitting, setSubmitting] = useState(false)
-  const [result, setResult] = useState<{ low: number; high: number } | null>(null)
+  const [sentTo, setSentTo] = useState<string | null>(null)
   const [error, setError] = useState("")
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -55,8 +56,9 @@ export function Estimator({
     const d = Object.fromEntries(new FormData(form).entries()) as Record<string, string>
 
     if (!d.intervention) return setError("Choisissez un type d'intervention.")
-    if (!d.email?.trim() && !d.telephone?.trim())
-      return setError("Indiquez un email ou un téléphone pour débloquer votre estimation.")
+    // L'email est obligatoire : c'est par là que part l'estimation.
+    if (!d.email?.trim())
+      return setError("Indiquez votre email — c'est là qu'on vous envoie votre estimation.")
     if (!d.consent)
       return setError("Merci de cocher l'autorisation d'être recontacté.")
     setError("")
@@ -68,10 +70,11 @@ export function Estimator({
     const low = round10(it.base[0] * sf * qf * af)
     const high = round10(it.base[1] * sf * qf * af)
 
+    const recap = `ESTIMATEUR — ${it.label} · taille ${SIZES[d.taille]?.label ?? "?"} · nombre ${QTYS[d.quantite]?.label ?? "?"} · accès ${ACCESS[d.acces]?.label ?? "?"}`
+
     setSubmitting(true)
-    const recap = `ESTIMATEUR — ${it.label} · taille ${SIZES[d.taille]?.label ?? "?"} · nombre ${QTYS[d.quantite]?.label ?? "?"} · accès ${ACCESS[d.acces]?.label ?? "?"} → estimation affichée : ${low} – ${high} €`
     try {
-      await fetch("/api/lead", {
+      const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -80,13 +83,49 @@ export function Estimator({
           telephone: d.telephone,
           message: recap,
           source: "Estimateur en ligne",
+          estimateLow: low,
+          estimateHigh: high,
+          interventionLabel: it.label,
+          tailleLabel: SIZES[d.taille]?.label ?? "",
+          quantiteLabel: QTYS[d.quantite]?.label ?? "",
+          accesLabel: ACCESS[d.acces]?.label ?? "",
         }),
       })
+      if (!res.ok) throw new Error()
+      setSentTo(d.email.trim())
     } catch {
-      // On affiche quand même l'estimation ; le lead pourra rappeler.
+      setError(
+        "Une erreur est survenue, votre estimation n'a pas pu être envoyée. Réessayez, ou appelez-nous directement."
+      )
+    } finally {
+      setSubmitting(false)
     }
-    setResult({ low, high })
-    setSubmitting(false)
+  }
+
+  // Écran de confirmation — pas de prix affiché, l'estimation est dans le mail.
+  if (sentTo) {
+    return (
+      <div className="rounded-2xl border border-emerald-900/10 bg-card p-6 text-center text-foreground">
+        <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+          <MailCheck className="size-6" />
+        </div>
+        <p className="mt-4 font-heading text-lg font-bold text-emerald-900">
+          Votre estimation est en route&nbsp;!
+        </p>
+        <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">
+          On vient de l&apos;envoyer à <strong className="text-foreground">{sentTo}</strong>.
+          Vérifiez votre boîte de réception (et vos spams). Pour aller plus vite vers
+          un devis précis, appelez-nous directement&nbsp;:
+        </p>
+        <a
+          href={phoneHref}
+          className="mt-5 inline-flex h-11 items-center gap-2 rounded-lg bg-emerald-700 px-5 text-sm font-semibold text-white transition-colors hover:bg-emerald-800"
+        >
+          <Phone className="size-4" />
+          {phoneDisplay}
+        </a>
+      </div>
+    )
   }
 
   return (
@@ -138,11 +177,20 @@ export function Estimator({
         </div>
 
         <div className="grid gap-2">
-          <Label htmlFor="est-email">Email</Label>
-          <Input id="est-email" name="email" type="email" autoComplete="email" />
+          <Label htmlFor="est-email">
+            Email <span className="text-emerald-700">*</span>
+          </Label>
+          <Input
+            id="est-email"
+            name="email"
+            type="email"
+            required
+            autoComplete="email"
+            placeholder="vous@email.fr"
+          />
         </div>
         <div className="grid gap-2">
-          <Label htmlFor="est-tel">Téléphone</Label>
+          <Label htmlFor="est-tel">Téléphone (optionnel)</Label>
           <Input id="est-tel" name="telephone" type="tel" autoComplete="tel" />
         </div>
 
@@ -165,34 +213,15 @@ export function Estimator({
             disabled={submitting}
             className="h-11 bg-emerald-700 px-6 text-base text-white hover:bg-emerald-800"
           >
-            {submitting ? "Calcul…" : "Obtenir mon estimation"}
+            {submitting ? "Envoi…" : "Recevoir mon estimation par email"}
           </Button>
+          <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+            Votre estimation vous est envoyée par email. Le devis définitif &mdash;
+            gratuit et sans engagement &mdash; est donné après un appel ou une visite.
+          </p>
         </div>
         {error && <p className="text-sm text-destructive sm:col-span-2">{error}</p>}
       </form>
-
-      {result && (
-        <div className="mt-6 rounded-xl border border-emerald-200 bg-emerald-50 p-5">
-          <p className="text-sm font-medium text-emerald-800">Estimation indicative</p>
-          <p className="mt-1 font-heading text-3xl font-bold text-emerald-900">
-            {result.low} – {result.high} €
-          </p>
-          <p className="mt-3 text-xs leading-relaxed text-emerald-900">
-            ⚠️ Ceci est une <strong>simple estimation</strong>, basée sur des
-            fourchettes moyennes. <strong>Le devis définitif — gratuit et sans
-            engagement — est établi après un échange téléphonique ou une visite</strong>,
-            car le prix réel dépend de l&apos;état des arbres, de l&apos;accès et des
-            contraintes du chantier.
-          </p>
-          <a
-            href={phoneHref}
-            className="mt-4 inline-flex h-11 items-center gap-2 rounded-lg bg-emerald-700 px-5 text-sm font-semibold text-white transition-colors hover:bg-emerald-800"
-          >
-            <Phone className="size-4" />
-            Obtenir mon devis précis — {phoneDisplay}
-          </a>
-        </div>
-      )}
     </div>
   )
 }
