@@ -8,8 +8,8 @@ export const metadata: Metadata = {
   robots: { index: false },
 }
 
-// TODO : compléter avec la raison sociale, le SIRET et l'adresse réels
-// (dépend de la structure / de l'artisan partenaire) avant mise en ligne.
+// Éditeur = NS NATIVESQUARE (exploitant du site, identique pour tous les clones).
+// Seuls le téléphone / la zone varient par ville (via getActiveCity()).
 export default function MentionsLegalesPage() {
   const city = getActiveCity()
   return (
@@ -20,17 +20,35 @@ export default function MentionsLegalesPage() {
         <section className="space-y-2 text-sm leading-relaxed text-muted-foreground">
           <h2 className="text-lg font-semibold text-foreground">Éditeur du site</h2>
           <p>
-            {city.brand} — [Raison sociale à compléter], [SIRET à compléter].
-            Contact : {city.phoneDisplay}. Zone d&apos;activité : {city.city} et
+            Le site {city.brand} est édité par <strong>NS NATIVESQUARE</strong>,
+            société par actions simplifiée (SAS) au capital de 2&nbsp;€, immatriculée
+            au RCS de Paris sous le numéro 995&nbsp;089&nbsp;851.
+          </p>
+          <ul className="list-none space-y-1">
+            <li>Siège social : 60 rue François Ier, 75008 Paris</li>
+            <li>SIRET (siège) : 995 089 851 00019</li>
+            <li>N° TVA intracommunautaire : FR87 995 089 851</li>
+            <li>Code APE : 6201Z (programmation informatique)</li>
+            <li>Contact : {city.phoneDisplay}</li>
+          </ul>
+          <p>
+            Zone d&apos;activité couverte par ce site : {city.city} et son
             agglomération ({city.dept}).
           </p>
         </section>
 
         <section className="space-y-2 text-sm leading-relaxed text-muted-foreground">
+          <h2 className="text-lg font-semibold text-foreground">
+            Directeur de la publication
+          </h2>
+          <p>Maxime Gey, en sa qualité de président de NS NATIVESQUARE.</p>
+        </section>
+
+        <section className="space-y-2 text-sm leading-relaxed text-muted-foreground">
           <h2 className="text-lg font-semibold text-foreground">Hébergement</h2>
           <p>
-            Site hébergé par Vercel Inc., 440 N Barranca Ave #4133, Covina, CA
-            91723, États-Unis. Nom de domaine géré via Hostinger.
+            Site hébergé par Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA
+            91723, États-Unis.
           </p>
         </section>
 
