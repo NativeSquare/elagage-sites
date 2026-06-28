@@ -30,7 +30,10 @@ npm run dev            # http://localhost:3000  (ville par défaut : pau)
 3. `node scripts/check-similarity.mjs` → similarité < 35 %.
 4. Créer le projet Vercel, brancher ce repo, poser `NEXT_PUBLIC_CITY=<ville>`.
 
+## Sites en ligne
+- Pau — https://elagage-pau.fr
+
 ## Déploiement
 Auto-deploy : un `git push` sur `master` redéploie les projets Vercel connectés.
 Les commits doivent utiliser un email rattaché au compte GitHub (sinon Vercel
-bloque le build).
+bloque le build). Repo hébergé sous l'org GitHub **NativeSquare**.
