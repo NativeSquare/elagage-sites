@@ -59,6 +59,9 @@ export function Estimator({
     // L'email est obligatoire : c'est par là que part l'estimation.
     if (!d.email?.trim())
       return setError("Indiquez votre email — c'est là qu'on vous envoie votre estimation.")
+    // Le téléphone est obligatoire : c'est par là que le devis se conclut.
+    if (!d.telephone?.trim())
+      return setError("Indiquez votre téléphone pour qu'on puisse vous rappeler.")
     if (!d.consent)
       return setError("Merci de cocher l'autorisation d'être recontacté.")
     setError("")
@@ -197,8 +200,17 @@ export function Estimator({
           />
         </div>
         <div className="grid gap-2">
-          <Label htmlFor="est-tel">Téléphone (optionnel)</Label>
-          <Input id="est-tel" name="telephone" type="tel" autoComplete="tel" />
+          <Label htmlFor="est-tel">
+            Téléphone <span className="text-emerald-700">*</span>
+          </Label>
+          <Input
+            id="est-tel"
+            name="telephone"
+            type="tel"
+            required
+            autoComplete="tel"
+            placeholder="06 12 34 56 78"
+          />
         </div>
 
         <label className="flex items-start gap-2.5 text-sm text-muted-foreground sm:col-span-2">
