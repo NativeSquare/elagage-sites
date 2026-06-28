@@ -125,7 +125,7 @@ export const pau: CityConfig = {
       navLabel: "Élagage",
       tagline: "Taille et soin de vos arbres, dans les règles de l'art.",
       icon: "tree-deciduous",
-      metaTitle: "Élagage d'arbres à Pau (64) | Élagueur-grimpeur — Devis gratuit",
+      metaTitle: "Élagage d'arbres à Pau (64) | Élagueur-grimpeur",
       metaDescription:
         "Élagage et taille d'arbres à Pau et dans le Béarn par des élagueurs-grimpeurs certifiés. Éclaircissage, réduction, taille raisonnée. Devis gratuit sous 24 h.",
       h1: "Élagage d'arbres à Pau et en Béarn",
@@ -183,7 +183,7 @@ export const pau: CityConfig = {
       navLabel: "Abattage",
       tagline: "Abattage et démontage sécurisés, même en espace contraint.",
       icon: "axe",
-      metaTitle: "Abattage d'arbres à Pau (64) | Démontage sécurisé — Devis gratuit",
+      metaTitle: "Abattage d'arbres à Pau (64) | Démontage sécurisé",
       metaDescription:
         "Abattage et démontage d'arbres à Pau et en Béarn. Arbre dangereux, malade ou trop proche d'une maison : intervention sécurisée par des professionnels assurés.",
       h1: "Abattage d'arbres à Pau",
@@ -299,7 +299,7 @@ export const pau: CityConfig = {
       navLabel: "Taille de haie",
       tagline: "Haies nettes et denses, taillées au bon moment.",
       icon: "scissors",
-      metaTitle: "Taille de haie à Pau (64) | Entretien de haies — Devis gratuit",
+      metaTitle: "Taille de haie à Pau (64) | Entretien de haies",
       metaDescription:
         "Taille et entretien de haies à Pau et en Béarn. Haies de jardin, brise-vue, grandes haies de propriété. Taille hors période de nidification. Devis gratuit.",
       h1: "Taille de haie à Pau",
@@ -357,7 +357,7 @@ export const pau: CityConfig = {
       navLabel: "Débroussaillage",
       tagline: "Terrains et talus dégagés, ronces et broussailles éliminées.",
       icon: "sprout",
-      metaTitle: "Débroussaillage à Pau (64) | Nettoyage de terrain — Devis gratuit",
+      metaTitle: "Débroussaillage à Pau (64) | Nettoyage de terrain",
       metaDescription:
         "Débroussaillage et nettoyage de terrains à Pau et en Béarn. Friches, talus de coteau, terrains en pente, ronces et végétation envahissante. Devis gratuit.",
       h1: "Débroussaillage et nettoyage de terrain à Pau",
