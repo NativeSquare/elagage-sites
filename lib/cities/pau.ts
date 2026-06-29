@@ -5,8 +5,7 @@ import type { CityConfig } from "@/lib/types"
 // pour une autre ville : le contexte local (quartiers, essences, climat,
 // règles) doit être réécrit pour chaque site (règle anti-duplication SEO).
 //
-// ⚠️ phoneDisplay / phoneHref = PLACEHOLDER. À remplacer par le numéro de
-// suivi Twilio avant la mise en ligne.
+// Numéro de suivi Twilio (acheté le 29/06/2026). Renvoie via TwiML Bin.
 
 export const pau: CityConfig = {
   slug: "pau",
@@ -17,8 +16,8 @@ export const pau: CityConfig = {
   region: "Nouvelle-Aquitaine",
   domain: "elagage-pau.fr",
   brand: "Élagage Pau",
-  phoneDisplay: "05 59 00 00 00", // PLACEHOLDER Twilio
-  phoneHref: "tel:+33559000000", // PLACEHOLDER Twilio
+  phoneDisplay: "01 62 29 03 75", // Twilio (suivi d'appels)
+  phoneHref: "tel:+33162290375",
   email: "", // pas d'email public pour l'instant (ne pas inventer d'adresse)
   postalCode: "64000",
   hours: "Du lundi au samedi, 8h–19h",
