@@ -155,6 +155,13 @@ export const pau: CityConfig = {
           ],
         },
         {
+          heading: "Sur corde ou à la nacelle : la bonne technique selon l'accès",
+          body: [
+            "Nous travaillons de deux façons complémentaires. Le grimpeur encordé accède à tout l'arbre, y compris les sujets isolés des coteaux ou les grands platanes de cœur d'îlot où aucun engin ne peut entrer : c'est la technique reine de l'arboriste, précise et respectueuse de l'arbre. La nacelle, elle, fait gagner du temps sur les chantiers dégagés — alignements de bord de rue, arbres en limite de parking, cimes hautes et accessibles.",
+            "Le choix ne dépend pas de nos habitudes mais de votre arbre et de son environnement : accès, hauteur, présence de lignes ou de bâti. Nous retenons la méthode la plus sûre et la plus économique pour votre situation, et nous vous l'expliquons dans le devis.",
+          ],
+        },
+        {
           heading: "Pourquoi faire appel à un professionnel",
           body: [
             "L'élagage en hauteur est l'un des travaux de jardin les plus accidentogènes : chutes, tronçonneuse, branches sous tension. Un élagueur-grimpeur formé travaille encordé, assuré, et sait lire les contraintes mécaniques d'un arbre avant de couper. Au-delà de la sécurité, une coupe maîtrisée préserve la santé et la longévité de l'arbre, là où une taille amateur le défigure ou l'affaiblit durablement.",
@@ -173,6 +180,10 @@ export const pau: CityConfig = {
         {
           q: "De quoi dépend le prix d'un élagage ?",
           a: "Principalement de la taille de l'arbre, de la difficulté d'accès, du type de taille et du volume de déchets à évacuer. C'est pourquoi nous établissons un devis gratuit après être passés voir l'arbre.",
+        },
+        {
+          q: "Quelle différence entre élagage et émondage ?",
+          a: "L'élagage entretient l'arbre en respectant sa forme naturelle : on retire le bois mort, on allège et on équilibre le houppier. L'émondage, plus sévère, ne conserve que le tronc et les grosses charpentières pour forcer la repousse. Nous pratiquons une taille raisonnée et déconseillons l'émondage systématique, qui fragilise l'arbre et provoque des rejets mal attachés.",
         },
       ],
     },
@@ -203,6 +214,13 @@ export const pau: CityConfig = {
           body: [
             "Un abattage se décide quand l'arbre est mort, dépérissant, atteint d'une maladie ou d'un champignon qui le rend instable, ou quand son système racinaire menace des fondations ou des canalisations. C'est aussi le cas d'un sujet trop proche d'une habitation, ou penché après une tempête.",
             "Nous privilégions toujours la solution la moins radicale : si une taille de réduction ou un haubanage suffit à sécuriser l'arbre, nous vous le disons. L'abattage n'est conseillé que lorsqu'il n'y a pas d'autre option raisonnable.",
+          ],
+        },
+        {
+          heading: "L'alternative à l'abattage : le haubanage",
+          body: [
+            "Un arbre fragilisé — charpentière fissurée, écorce incluse, tronc fendu après un coup de vent du sud — n'est pas toujours condamné. Le haubanage consiste à relier les branches maîtresses par un câble souple qui limite leur amplitude et répartit les contraintes mécaniques, sans blesser l'arbre. Bien posé, il sécurise un sujet qu'on aurait cru bon à abattre et lui laisse des années de sursis.",
+            "Avant de proposer un abattage, nous évaluons toujours si un haubanage, une taille de réduction ou un allègement du houppier suffirait à écarter le danger. Conserver un arbre mûr a une vraie valeur — ombrage, paysage, biodiversité — et revient souvent moins cher que de l'abattre puis de le remplacer.",
           ],
         },
         {
@@ -470,6 +488,14 @@ export const pau: CityConfig = {
     {
       q: "Sous combien de temps pouvez-vous intervenir ?",
       a: "Pour un entretien classique, sous quelques jours à une semaine selon la saison. Pour un arbre dangereux, nous priorisons l'urgence — appelez-nous directement.",
+    },
+    {
+      q: "Un de mes arbres a souffert d'une tempête, que faire ?",
+      a: "Le vent du sud (effet de foehn) qui descend des Pyrénées fragilise régulièrement les houppiers dans la région paloise. Après un coup de vent, faites vérifier un arbre penché, une branche fissurée ou une charpentière fendue : selon les cas, un haubanage, une taille de réduction ou, en dernier recours, un abattage permet de sécuriser. Pour un danger immédiat, appelez-nous, nous priorisons l'urgence.",
+    },
+    {
+      q: "Ces travaux donnent-ils droit au crédit d'impôt de 50 % ?",
+      a: "Pour les petits travaux de jardinage réalisés à votre domicile (taille de haie, débroussaillage, tonte…), un crédit d'impôt de 50 % s'applique si l'intervenant est déclaré « services à la personne », dans la limite de 5 000 € de dépenses par an. En revanche, l'abattage et l'élagage de grands arbres n'entrent pas dans ce cadre. Nous vous précisons ce qui est éligible lors du devis.",
     },
   ],
 }
